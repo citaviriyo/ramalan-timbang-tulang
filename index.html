@@ -1,135 +1,203 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ramalan Berat Tulang (Akurasi Tinggi)</title>
-    
-    <!-- Tailwind CSS (CDN) -->
-    <script src="[https://cdn.tailwindcss.com](https://cdn.tailwindcss.com)"></script>
-    
-    <!-- Google Fonts -->
-    <link href="[https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=Poppins:wght@300;400;600&display=swap](https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=Poppins:wght@300;400;600&display=swap)" rel="stylesheet">
-    
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="[https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css](https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css)">
-    
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ramalan Berat Tulang (Akurasi Tinggi)</title>
+
+  <!-- Tailwind CSS (CDN) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700;800&family=Poppins:wght@300;400;600;800&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Font Awesome -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+  />
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css" />
 </head>
+
 <body class="min-h-screen flex items-center justify-center p-4">
 
-    <div class="max-w-2xl w-full bg-white rounded-xl shadow-2xl overflow-hidden border-4 border-yellow-600 relative">
-        <!-- Corners -->
-        <div class="absolute top-0 left-0 w-16 h-16 border-t-4 border-l-4 border-red-800 rounded-tl-xl z-10"></div>
-        <div class="absolute top-0 right-0 w-16 h-16 border-t-4 border-r-4 border-red-800 rounded-tr-xl z-10"></div>
-        <div class="absolute bottom-0 left-0 w-16 h-16 border-b-4 border-l-4 border-red-800 rounded-bl-xl z-10"></div>
-        <div class="absolute bottom-0 right-0 w-16 h-16 border-b-4 border-r-4 border-red-800 rounded-br-xl z-10"></div>
+  <!-- WRAP (biar background body keliatan dan posisi ornament enak) -->
+  <div class="wrap w-full">
+
+    <!-- Lampion Kiri (SVG inline, no asset needed) -->
+    <svg class="lantern left" viewBox="0 0 120 220" aria-hidden="true">
+      <path d="M60 10 C50 10 46 24 46 34 C46 44 50 54 60 56 C70 54 74 44 74 34 C74 24 70 10 60 10Z" fill="#ffd56a"/>
+      <path d="M32 70 C32 40 88 40 88 70 L88 150 C88 190 32 190 32 150Z" fill="#d21f1f"/>
+      <path d="M36 78 C36 55 84 55 84 78 L84 148 C84 175 36 175 36 148Z" fill="#b10f0f" opacity=".85"/>
+      <path d="M60 190 C52 190 48 198 48 206 C48 214 52 220 60 220 C68 220 72 214 72 206 C72 198 68 190 60 190Z" fill="#ffd56a"/>
+      <path d="M60 56 L60 70" stroke="#ffd56a" stroke-width="4" stroke-linecap="round"/>
+      <path d="M60 220 L60 206" stroke="#ffd56a" stroke-width="4" stroke-linecap="round"/>
+      <path d="M60 206 C55 206 55 198 60 198 C65 198 65 206 60 206Z" fill="#ffd56a"/>
+      <path d="M60 206 L60 210" stroke="#ffd56a" stroke-width="3" stroke-linecap="round"/>
+    </svg>
+
+    <!-- Lampion Kanan -->
+    <svg class="lantern right" viewBox="0 0 120 220" aria-hidden="true">
+      <path d="M60 10 C50 10 46 24 46 34 C46 44 50 54 60 56 C70 54 74 44 74 34 C74 24 70 10 60 10Z" fill="#ffd56a"/>
+      <path d="M32 70 C32 40 88 40 88 70 L88 150 C88 190 32 190 32 150Z" fill="#d21f1f"/>
+      <path d="M36 78 C36 55 84 55 84 78 L84 148 C84 175 36 175 36 148Z" fill="#b10f0f" opacity=".85"/>
+      <path d="M60 190 C52 190 48 198 48 206 C48 214 52 220 60 220 C68 220 72 214 72 206 C72 198 68 190 60 190Z" fill="#ffd56a"/>
+      <path d="M60 56 L60 70" stroke="#ffd56a" stroke-width="4" stroke-linecap="round"/>
+      <path d="M60 220 L60 206" stroke="#ffd56a" stroke-width="4" stroke-linecap="round"/>
+      <path d="M60 206 C55 206 55 198 60 198 C65 198 65 206 60 206Z" fill="#ffd56a"/>
+      <path d="M60 206 L60 210" stroke="#ffd56a" stroke-width="3" stroke-linecap="round"/>
+    </svg>
+
+    <!-- CARD UTAMA (tetap gaya lu + ditambah panel/ornamen dari CSS) -->
+    <div class="max-w-2xl w-full relative">
+
+      <!-- Panel/kartu -->
+      <div class="panel">
 
         <!-- Header -->
-        <div class="bg-red-900 p-6 text-center relative overflow-hidden">
-            <h1 class="text-2xl md:text-4xl font-bold gold-text serif-font mb-2">Ramalan Berat Tulang</h1>
-            <p class="text-red-200 text-sm md:text-base">Metode Yuan Tian Gang (Edisi Revisi Akurat)</p>
+        <div class="bg-red-900 p-6 text-center relative overflow-hidden rounded-xl">
+          <h1 class="text-2xl md:text-4xl font-bold gold-text serif-font mb-2">
+            Ramalan Berat Tulang
+          </h1>
+          <p class="text-red-200 text-sm md:text-base">
+            Metode Yuan Tian Gang (Edisi Revisi Akurat)
+          </p>
         </div>
+
+        <!-- Watermark naga (SVG inline) -->
+        <svg class="dragon-watermark" viewBox="0 0 600 600" aria-hidden="true">
+          <path fill="#000"
+            d="M390 78c-54 6-92 48-110 84-15 31-10 51-31 68-18 14-44 12-63 24-33 20-44 61-27 95 17 34 56 46 91 39 33-7 55-28 78-52 9 26-3 52-24 70-26 22-61 31-93 41-45 14-84 44-89 92-6 55 38 95 91 98 49 3 92-23 127-55 21-19 40-40 59-61 13 24 20 51 16 78-7 43-39 70-71 95 49-9 105-41 128-88 20-41 16-90-2-132-15-35-41-63-61-95-9-14-16-31-12-48 5-19 25-31 41-40 34-19 73-31 97-64 26-37 21-90-14-121-25-22-59-28-92-24 20-19 52-31 79-25 33 7 54 33 65 62 14-49 2-111-43-142-21-14-46-18-70-15 14-14 32-24 52-26 26-3 51 7 70 26-9-41-45-72-86-76z"
+            opacity=".9"/>
+        </svg>
 
         <!-- Content -->
-        <div class="p-6 md:p-8 card-pattern">
-            
-            <div class="bg-yellow-100 border-l-4 border-yellow-500 p-4 mb-6 text-sm text-yellow-900">
-                <i class="fas fa-exclamation-triangle mr-1 text-yellow-600"></i> 
-                <strong>PENTING:</strong> Data di bawah ini <strong>wajib menggunakan Tanggal Imlek (Lunar)</strong>. <br>
-                Contoh: Lahir 25 Januari 2020 (Masehi) adalah Imlek tanggal 1 bulan 1 tahun Tikus Logam (2531).
+        <div class="p-6 md:p-8 card-pattern rounded-xl mt-4">
+
+          <!-- Notice (pakai class notice dari CSS baru biar lebih oriental) -->
+          <div class="notice text-sm">
+            <i class="fas fa-exclamation-triangle mr-1 text-yellow-700"></i>
+            <strong>PENTING:</strong> Data di bawah ini <strong>wajib menggunakan Tanggal Imlek (Lunar)</strong>.<br />
+            Contoh: Lahir 25 Januari 2020 (Masehi) adalah Imlek tanggal 1 bulan 1 tahun Tikus Logam (2531).
+          </div>
+
+          <form id="calcForm" class="space-y-4">
+            <!-- Year -->
+            <div>
+              <label class="block text-gray-700 font-semibold mb-1 serif-font">
+                Tahun Lahir (Imlek/Shio)
+              </label>
+              <select id="yearInput" class="input-style font-mono text-sm">
+                <option value="" disabled selected>-- Pilih Tahun Imlek --</option>
+                <!-- JS will populate -->
+              </select>
             </div>
 
-            <form id="calcForm" class="space-y-4">
-                <!-- Year -->
-                <div>
-                    <label class="block text-gray-700 font-semibold mb-1 serif-font">Tahun Lahir (Imlek/Shio)</label>
-                    <select id="yearInput" class="input-style font-mono text-sm">
-                        <option value="" disabled selected>-- Pilih Tahun Imlek --</option>
-                        <!-- JS will populate -->
-                    </select>
-                </div>
-
-                <!-- Month -->
-                <div>
-                    <label class="block text-gray-700 font-semibold mb-1 serif-font">Bulan (Lunar / Imlek)</label>
-                    <select id="monthInput" class="input-style">
-                        <option value="" disabled selected>-- Pilih Bulan Imlek --</option>
-                        <option value="0.6">Bulan 1 (0.6)</option>
-                        <option value="0.7">Bulan 2 (0.7)</option>
-                        <option value="1.8">Bulan 3 (1.8)</option>
-                        <option value="0.9">Bulan 4 (0.9)</option>
-                        <option value="0.5">Bulan 5 (0.5)</option>
-                        <option value="1.6">Bulan 6 (1.6)</option>
-                        <option value="0.9">Bulan 7 (0.9)</option>
-                        <option value="1.5">Bulan 8 (1.5)</option>
-                        <option value="1.8">Bulan 9 (1.8)</option>
-                        <option value="0.8">Bulan 10 (0.8)</option>
-                        <option value="0.9">Bulan 11 (0.9)</option>
-                        <option value="0.5">Bulan 12 (0.5)</option>
-                    </select>
-                </div>
-
-                <!-- Day -->
-                <div>
-                    <label class="block text-gray-700 font-semibold mb-1 serif-font">Tanggal (Lunar / Imlek)</label>
-                    <select id="dayInput" class="input-style">
-                        <option value="" disabled selected>-- Pilih Tanggal Imlek --</option>
-                        <!-- JS will populate 1-30 -->
-                    </select>
-                </div>
-
-                <!-- Time -->
-                <div>
-                    <label class="block text-gray-700 font-semibold mb-1 serif-font">Jam Lahir</label>
-                    <select id="timeInput" class="input-style">
-                        <option value="" disabled selected>-- Pilih Jam Lahir --</option>
-                        <option value="1.6">Tikus (23:00 - 00:59)</option>
-                        <option value="0.6">Kerbau (01:00 - 02:59)</option>
-                        <option value="0.7">Macan (03:00 - 04:59)</option>
-                        <option value="1.0">Kelinci (05:00 - 06:59)</option>
-                        <option value="0.9">Naga (07:00 - 08:59)</option>
-                        <option value="1.6">Ular (09:00 - 10:59)</option>
-                        <option value="1.0">Kuda (11:00 - 12:59)</option>
-                        <option value="0.8">Kambing (13:00 - 14:59)</option>
-                        <option value="0.8">Monyet (15:00 - 16:59)</option>
-                        <option value="0.9">Ayam (17:00 - 18:59)</option>
-                        <option value="0.6">Anjing (19:00 - 20:59)</option>
-                        <option value="0.6">Babi (21:00 - 22:59)</option>
-                    </select>
-                </div>
-
-                <button type="button" onclick="calculateFortune()" class="w-full bg-red-800 hover:bg-red-900 text-white font-bold py-3 px-4 rounded shadow-lg transform transition hover:scale-[1.02] flex justify-center items-center gap-2">
-                    <i class="fas fa-calculator"></i> Hitung Nasib
-                </button>
-            </form>
-
-            <!-- Result Section -->
-            <div id="resultSection" class="hidden mt-8 border-t-2 border-red-200 pt-6 animate-fade-in">
-                <div class="text-center">
-                    <h2 class="text-xl serif-font font-bold text-red-800">Total Berat Tulang</h2>
-                    <div class="text-5xl font-bold text-yellow-600 my-3" id="totalWeightDisplay">0.0</div>
-                    <p class="text-gray-600 text-sm mb-4 bg-gray-100 inline-block px-3 py-1 rounded-full">Bobot (Cien/Qian)</p>
-                </div>
-
-                <div class="bg-white p-6 rounded-lg shadow-inner border border-gray-200">
-                    <h3 class="font-bold text-lg mb-2 text-gray-800 serif-font border-b border-red-100 pb-2">Syair Kuno:</h3>
-                    <p id="poemText" class="italic text-gray-700 mb-6 leading-relaxed font-serif text-lg bg-yellow-50 p-4 rounded border-l-4 border-yellow-400"></p>
-                    
-                    <h3 class="font-bold text-lg mb-2 text-gray-800 serif-font border-b border-red-100 pb-2">Penjelasan:</h3>
-                    <p id="meaningText" class="text-gray-800 leading-relaxed"></p>
-                </div>
+            <!-- Month -->
+            <div>
+              <label class="block text-gray-700 font-semibold mb-1 serif-font">
+                Bulan (Lunar / Imlek)
+              </label>
+              <select id="monthInput" class="input-style">
+                <option value="" disabled selected>-- Pilih Bulan Imlek --</option>
+                <option value="0.6">Bulan 1 (0.6)</option>
+                <option value="0.7">Bulan 2 (0.7)</option>
+                <option value="1.8">Bulan 3 (1.8)</option>
+                <option value="0.9">Bulan 4 (0.9)</option>
+                <option value="0.5">Bulan 5 (0.5)</option>
+                <option value="1.6">Bulan 6 (1.6)</option>
+                <option value="0.9">Bulan 7 (0.9)</option>
+                <option value="1.5">Bulan 8 (1.5)</option>
+                <option value="1.8">Bulan 9 (1.8)</option>
+                <option value="0.8">Bulan 10 (0.8)</option>
+                <option value="0.9">Bulan 11 (0.9)</option>
+                <option value="0.5">Bulan 12 (0.5)</option>
+              </select>
             </div>
 
+            <!-- Day -->
+            <div>
+              <label class="block text-gray-700 font-semibold mb-1 serif-font">
+                Tanggal (Lunar / Imlek)
+              </label>
+              <select id="dayInput" class="input-style">
+                <option value="" disabled selected>-- Pilih Tanggal Imlek --</option>
+                <!-- JS will populate 1-30 -->
+              </select>
+            </div>
+
+            <!-- Time -->
+            <div>
+              <label class="block text-gray-700 font-semibold mb-1 serif-font">
+                Jam Lahir
+              </label>
+              <select id="timeInput" class="input-style">
+                <option value="" disabled selected>-- Pilih Jam Lahir --</option>
+                <option value="1.6">Tikus (23:00 - 00:59)</option>
+                <option value="0.6">Kerbau (01:00 - 02:59)</option>
+                <option value="0.7">Macan (03:00 - 04:59)</option>
+                <option value="1.0">Kelinci (05:00 - 06:59)</option>
+                <option value="0.9">Naga (07:00 - 08:59)</option>
+                <option value="1.6">Ular (09:00 - 10:59)</option>
+                <option value="1.0">Kuda (11:00 - 12:59)</option>
+                <option value="0.8">Kambing (13:00 - 14:59)</option>
+                <option value="0.8">Monyet (15:00 - 16:59)</option>
+                <option value="0.9">Ayam (17:00 - 18:59)</option>
+                <option value="0.6">Anjing (19:00 - 20:59)</option>
+                <option value="0.6">Babi (21:00 - 22:59)</option>
+              </select>
+            </div>
+
+            <button
+              type="button"
+              onclick="calculateFortune()"
+              class="w-full bg-red-800 hover:bg-red-900 text-white font-bold py-3 px-4 rounded shadow-lg transform transition hover:scale-[1.02] flex justify-center items-center gap-2"
+            >
+              <i class="fas fa-calculator"></i> Hitung Nasib
+            </button>
+          </form>
+
+          <!-- Result Section -->
+          <div id="resultSection" class="hidden mt-8 border-t-2 border-red-200 pt-6 animate-fade-in">
+            <div class="text-center">
+              <h2 class="text-xl serif-font font-bold text-red-800">Total Berat Tulang</h2>
+              <div class="text-5xl font-bold text-yellow-600 my-3" id="totalWeightDisplay">0.0</div>
+              <p class="text-gray-600 text-sm mb-4 bg-gray-100 inline-block px-3 py-1 rounded-full">
+                Bobot (Cien/Qian)
+              </p>
+            </div>
+
+            <div class="bg-white p-6 rounded-lg shadow-inner border border-gray-200">
+              <h3 class="font-bold text-lg mb-2 text-gray-800 serif-font border-b border-red-100 pb-2">
+                Syair Kuno:
+              </h3>
+              <p id="poemText"
+                 class="italic text-gray-700 mb-6 leading-relaxed font-serif text-lg bg-yellow-50 p-4 rounded border-l-4 border-yellow-400"></p>
+
+              <h3 class="font-bold text-lg mb-2 text-gray-800 serif-font border-b border-red-100 pb-2">
+                Penjelasan:
+              </h3>
+              <p id="meaningText" class="text-gray-800 leading-relaxed"></p>
+            </div>
+          </div>
+
         </div>
-        
-        <div class="bg-red-900 p-3 text-center text-red-300 text-xs">
-            Referensi: Yuan Tian Gang (Budaya Tionghoa)
+
+        <!-- Footer -->
+        <div class="bg-red-900 p-3 text-center text-red-200 text-xs rounded-xl mt-4">
+          Referensi: Yuan Tian Gang (Budaya Tionghoa)
         </div>
+
+      </div>
     </div>
+  </div>
 
-    <!-- Custom Script -->
-    <script src="script.js"></script>
+  <!-- Custom Script -->
+  <script src="script.js"></script>
 </body>
 </html>
